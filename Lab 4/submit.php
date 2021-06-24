@@ -79,12 +79,21 @@
 					$hasError=true;
 					$err_Password="Password Required";
 				}
-				else if(strlen($_POST["Password"])>= 8 && strpos($_POST["Password"],'#','?') == false && ctype_upper($_POST["Password"]) == false && ctype_lower($_POST["Password"]) == false && Htmlspecialchars($_POST["Password"]) == false)
+				elseif(strlen($_POST["Password"])>= 8) 
 				{
 					$hasError = true;
-					$err_Password = "Password Invalid";
+					$err_Password = "Password must have atleast 8 character";
 				}
-				
+				elseif(!strpos($_POST["Password"],"#") && !strpos($_POST["Password"],"?"))
+				{
+					$hasError = true;
+					$err_Password = "Password must have atleast one special character(# or ?)";
+				}
+				elseif(!ctype_upper($_POST["Password"]) && !ctype_lower($_POST["Password"]))
+				{
+					$hasError = true;
+					$err_Password = "Password must have combination of upper and lower character";
+				}
 				else
 				{
 					$Password=$_POST["Password"];
@@ -97,10 +106,20 @@
 					$hasError=true;
 					$err_Confirmpassword="Confirm Password Required";
 				}
-				else if(strlen($_POST["Confirmpassword"])>= 8 && strpos($_POST["Confirmpassword"],'#','?') == false && ctype_upper($_POST["Confirmpassword"]) == false && ctype_lower($_POST["Confirmpassword"]) == false && Htmlspecialchars($_POST["Confirmpassword"]) == false)
+				elseif(strlen($_POST["Confirmpassword"])>= 8) 
 				{
 					$hasError = true;
-					$err_Confirmpassword = " Confirm Password Invalid";
+					$err_Confirmpassword = "Confirm password must have atleast 8 character";
+				}
+				elseif(!strpos($_POST["Confirmpassword"],"#") && !strpos($_POST["Confirmpassword"],"?"))
+				{
+					$hasError = true;
+					$err_Confirmpassword = "Confirm password must have atleast one special character(# or ?)";
+				}
+				elseif(!ctype_upper($_POST["Confirmpassword"]) && !ctype_lower($_POST["Confirmpassword"]))
+				{
+					$hasError = true;
+					$err_Confirmpassword = "Confirm password must have combination of upper and lower character"; 
 				}
 				else
 				{
